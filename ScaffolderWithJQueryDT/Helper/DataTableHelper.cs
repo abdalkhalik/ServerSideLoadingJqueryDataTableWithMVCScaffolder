@@ -54,9 +54,9 @@ namespace ScaffolderWithJqueryDT.Helper
             List<WhereClausePart> whereParts = new List<WhereClausePart>();
 
             //if(sortColumn <= 0)
-            {
-                sortColumn += 1;
-            }
+            //{
+            //    sortColumn += 1;
+            //}
 
             if (!string.IsNullOrEmpty(search))
             {

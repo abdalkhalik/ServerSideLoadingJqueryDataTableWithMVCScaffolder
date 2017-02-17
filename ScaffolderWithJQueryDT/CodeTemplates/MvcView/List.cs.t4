@@ -1,9 +1,14 @@
 ﻿<#@ template language="C#" HostSpecific="True" #>
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
+<#@ assembly name="C:\Users\abud\Documents\Visual Studio 2015\Projects\AbudTemplate\SghlaDotCom\bin\SghlaDotCom.dll" #>
 
 @model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
 <#
+string sName =  SghlaDotCom.Helpers.T4Helpers.GetSingularName(ViewDataTypeName,"SingularName");
+string pName =  SghlaDotCom.Helpers.T4Helpers.GetPluralName(ViewDataTypeName,"PluralName");
+string NewViewName =  pName ;
+
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
 if(IsPartialView) {
 #>
@@ -15,7 +20,7 @@ if(IsPartialView) {
 @{
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     string action = ViewContext.RouteData.Values["action"].ToString();
-    ViewBag.Title = ScaffolderWithJQueryDT.Helper.GetViewName.GetViewTitle(controller, action);
+    ViewBag.Title = SghlaDotCom.Helper.GetViewName.GetViewTitle(controller, action);
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -50,7 +55,13 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <p>
     @Html.ActionLink(Resources.Global.Create, "Create",null, new { @class = "btn btn-info" })
 </p>
+<hr />
 
+<p>
+    <button id="editLink" onclick="GoToWindow('/@ViewContext.RouteData.Values["controller"].ToString()/Edit?id=')" class="btn btn-success">@Resources.Global.Edit</button>
+    <button id="detailsLink" onclick="GoToWindow('/@ViewContext.RouteData.Values["controller"].ToString()/Details?id=')" class="btn btn-info">@Resources.Global.Details</button>
+    <button id="deleteLink" onclick="GoToWindow('/@ViewContext.RouteData.Values["controller"].ToString()/Delete?id=')" class="btn btn-danger">@Resources.Global.Delete</button>
+</p>
 
 <div style="margin:30px;">
     <table id="example" class="display" cellspacing="0" width="100%">
@@ -105,6 +116,10 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 
 @section Scripts{
     <script>
+	    $( "#editLink" ).prop( "disabled", true );
+        $( "#detailsLink" ).prop( "disabled", true );
+        $( "#deleteLink" ).prop( "disabled", true );
+		var seleID= 0;
 
         $(document).ready(function () {
 
@@ -125,7 +140,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                     <#				
 						
 					foreach (PropertyMetadata property in properties) {
-						if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+						if (property.Scaffold && !property.IsForeignKey) {
 					#>
 					<#
 							// We do not want to show any association properties for which there is
@@ -142,7 +157,45 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                 ],
                 "order": [[0, "asc"]]
             });
+
+			   $('#example tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                    seleID = 0;
+                    $( "#editLink" ).prop( "disabled", true );
+                    $( "#detailsLink" ).prop( "disabled", true );
+                    $( "#deleteLink" ).prop( "disabled", true );
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+				<#									
+					foreach (PropertyMetadata property in properties) {
+						if (property.IsPrimaryKey) {
+							if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+								continue;
+							}
+					#>
+							  seleID = table.row('.selected').data().<#= GetValueExpression(property) #>;	
+					<#
+						}
+					}
+				#>             
+                    $( "#editLink" ).prop( "disabled", false );
+                    $( "#detailsLink" ).prop( "disabled", false );
+                    $( "#deleteLink" ).prop( "disabled", false );
+                }
+            });
         });
+
+		
+        function GoToWindow(linkToGo){
+            if(seleID == 0){
+                alert('Please select a row, before clicking on this button!');
+            }
+            else{
+                window.location.href = linkToGo + seleID;
+            }}
     </script>
 }
 
