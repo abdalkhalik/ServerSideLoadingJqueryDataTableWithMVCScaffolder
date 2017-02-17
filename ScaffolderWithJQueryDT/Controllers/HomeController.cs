@@ -15,7 +15,7 @@ using ScaffolderWithJQueryDT.Models;
 namespace ScaffolderWithJQueryDT.Controllers
 {
 
-    public class TestModelsController : Controller
+    public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
