@@ -153,7 +153,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                 ],
                 "order": [[0, "asc"]]
             });
-
+			    var table = $('#example').DataTable();
 			   $('#example tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
