@@ -8,25 +8,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ScaffolderWithJQueryDT.Models;
 using ScaffolderWithJqueryDT.Helper;
+using ScaffolderWithJQueryDT.Models;
+
 
 namespace ScaffolderWithJQueryDT.Controllers
 {
+
     public class TestModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
 		// Title: 
-        // GET: TestModels     
+        // GET: TestModels
+
+       
         public ActionResult Index()
         {
-
-
             return View(db.testTable.ToList());
         }
 
-        // GET: TestModels/Details/5    
+        // GET: TestModels/Details/5
+      
+       
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,6 +46,8 @@ namespace ScaffolderWithJQueryDT.Controllers
         }
 
         // GET: TestModels/Create
+
+       
         public ActionResult Create()
         {
             return View();
