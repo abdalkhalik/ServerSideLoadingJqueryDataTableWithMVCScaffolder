@@ -5,10 +5,6 @@
 
 @model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
 <#
-string sName =  SghlaDotCom.Helpers.T4Helpers.GetSingularName(ViewDataTypeName,"SingularName");
-string pName =  SghlaDotCom.Helpers.T4Helpers.GetPluralName(ViewDataTypeName,"PluralName");
-string NewViewName =  pName ;
-
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
 if(IsPartialView) {
 #>
@@ -20,7 +16,7 @@ if(IsPartialView) {
 @{
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     string action = ViewContext.RouteData.Values["action"].ToString();
-    ViewBag.Title = SghlaDotCom.Helper.GetViewName.GetViewTitle(controller, action);
+    ViewBag.Title = ScaffolderWithJQueryDT.Helper.GetViewName.GetViewTitle(controller, action);
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -70,7 +66,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
                 <#
 					IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
 					foreach (PropertyMetadata property in properties) {
-						if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+						if (property.Scaffold  && !property.IsForeignKey) {
 					#>
 					<#
 							// We do not want to show any association properties for which there is
@@ -93,7 +89,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
             <tr style="text-align:left;">
                 <#	
 					foreach (PropertyMetadata property in properties) {
-						if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+						if (property.Scaffold  && !property.IsForeignKey) {
 					#>
 					<#
 							// We do not want to show any association properties for which there is
