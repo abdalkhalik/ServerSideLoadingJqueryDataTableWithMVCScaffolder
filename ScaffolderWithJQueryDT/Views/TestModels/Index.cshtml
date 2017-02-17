@@ -1,0 +1,85 @@
+﻿
+
+@model IEnumerable<ScaffolderWithJQueryDT.Models.TestModel>
+
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+    ViewBag.Title = ScaffolderWithJQueryDT.Helper.GetViewName.GetViewTitle(controller, action);
+}
+
+<h2>@ViewBag.Title @Resources.Global.Added</h2>
+
+<p>
+    @Html.ActionLink(Resources.Global.Create, "Create", null, new { @class = "btn btn-info" })
+</p>
+
+
+<div style="margin:30px;">
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr style="text-align:left;">
+                <th>
+                    @Html.DisplayNameFor(model => model.firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hobby)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Degree)
+                </th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr style="text-align:left;">
+                <th>
+                    @Html.DisplayNameFor(model => model.firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hobby)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Degree)
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $('#example')
+                .removeClass('display')
+                .addClass('table table-striped table-bordered');
+            $('#example').dataTable({
+                "processing": true,
+                "serverSide": true,
+                "info": true,
+                "stateSave": true,
+                "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                "ajax": {
+                    "url": "/@ViewContext.RouteData.Values["controller"].ToString()/AjaxGetJsonData",
+                    "type": "GET"
+                },
+                "columns": [
+                    												{ "data": "firstName", "orderable": true },
+																	{ "data": "lastName", "orderable": true },
+																	{ "data": "Hobby", "orderable": true },
+																	{ "data": "Degree", "orderable": true },
+                ],
+                "order": [[0, "asc"]]
+            });
+        });
+    </script>
+}
+
