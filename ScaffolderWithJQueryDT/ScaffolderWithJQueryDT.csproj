@@ -220,12 +220,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-ScaffolderWithJQueryDT-20170217110608.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\aspnet-ScaffolderWithJQueryDT-20170217110608.mdf" />
     <Content Include="App_Data\aspnet-ScaffolderWithJQueryDT-20170217110608_log.ldf">
       <DependentUpon>aspnet-ScaffolderWithJQueryDT-20170217110608.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
