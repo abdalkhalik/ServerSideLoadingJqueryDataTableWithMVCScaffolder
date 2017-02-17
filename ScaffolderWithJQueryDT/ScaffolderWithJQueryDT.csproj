@@ -220,6 +220,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\aspnet-ScaffolderWithJQueryDT-20170217110608.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="App_Data\aspnet-ScaffolderWithJQueryDT-20170217110608_log.ldf">
+      <DependentUpon>aspnet-ScaffolderWithJQueryDT-20170217110608.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -514,7 +521,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="CodeTemplates\MvcView\PlaceHolder\" />
   </ItemGroup>
   <ItemGroup>
