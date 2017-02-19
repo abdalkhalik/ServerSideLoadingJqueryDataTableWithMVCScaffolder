@@ -1,0 +1,61 @@
+﻿
+
+
+@model ScaffolderWithJQueryDT.Models.TestModel
+
+@{
+     string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+    ViewBag.Title = ScaffolderWithJQueryDT.Helper.GetViewName.GetViewTitle(controller, action);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>@Resources.Global.sureToDelete</h3>
+<div>
+    <h4>ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hobby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hobby)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Resources.Global.Delete" class="btn btn-danger" /> |
+            @Html.ActionLink(Resources.Global.BackToList, "Index",null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

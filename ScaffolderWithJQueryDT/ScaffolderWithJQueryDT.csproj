@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,6 +376,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="How To Run\1.png" />
+    <Content Include="How To Run\2.png" />
+    <Content Include="How To Run\3.png" />
+    <Content Include="How To Run\4.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -516,6 +521,11 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TestModels\Create.cshtml" />
+    <Content Include="Views\TestModels\Delete.cshtml" />
+    <Content Include="Views\TestModels\Details.cshtml" />
+    <Content Include="Views\TestModels\Edit.cshtml" />
+    <Content Include="Views\TestModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeTemplates\MvcView\PlaceHolder\" />
